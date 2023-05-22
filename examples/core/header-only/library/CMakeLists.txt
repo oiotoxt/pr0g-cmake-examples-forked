@@ -19,6 +19,14 @@ add_library(${PROJECT_NAME} INTERFACE)
 # ${CMAKE_CURRENT_LIST_DIR} etc. are defined in GNUInstallDirs
 include(GNUInstallDirs)
 
+message(STATUS "[MY] CMAKE_CURRENT_LIST_DIR  : ${CMAKE_CURRENT_LIST_DIR}")
+message(STATUS "[MY] CMAKE_CURRENT_SOURCE_DIR: ${CMAKE_CURRENT_SOURCE_DIR}")
+message(STATUS "[MY] CMAKE_CURRENT_BINARY_DIR: ${CMAKE_CURRENT_BINARY_DIR}")
+message(STATUS "[MY] CMAKE_PREFIX_PATH       : ${CMAKE_PREFIX_PATH}")
+message(STATUS "[MY] CMAKE_INSTALL_PREFIX    : ${CMAKE_INSTALL_PREFIX}")
+message(STATUS "[MY] CMAKE_INSTALL_INCLUDEDIR: ${CMAKE_INSTALL_INCLUDEDIR}") # by GNUInstallDirs
+message(STATUS "[MY] CMAKE_INSTALL_LIBDIR    : ${CMAKE_INSTALL_LIBDIR}") # by GNUInstallDirs
+
 # sets the search paths for the include files after installation
 # this allows users to #include the library headers
 target_include_directories(
@@ -28,7 +36,9 @@ target_include_directories(
 
 # specify the target to install (calculator library defined above)
 # set the export name <name>-config (does not need to match target name)
-install(TARGETS ${PROJECT_NAME} EXPORT ${PROJECT_NAME}-config)
+install(
+    TARGETS ${PROJECT_NAME}
+    EXPORT ${PROJECT_NAME}-config)
 
 # associate installed target files with the export, and then install the export
 install(
